@@ -1,0 +1,624 @@
+version: 2
+
+seeds:
+  - name: terminology__admit_source
+    config:
+      schema: |
+        {%- if  var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_terminology{% else %}terminology{%- endif -%}
+      alias: admit_source
+      tags:
+        - terminology
+        - claims_preprocessing
+        - data_profiling
+      column_types:
+        admit_source_code : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        admit_source_description : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        newborn_description : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+
+
+  - name: terminology__admit_type
+    config:
+      schema: |
+        {%- if  var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_terminology{% else %}terminology{%- endif -%}
+      alias: admit_type
+      tags:
+        - terminology
+        - claims_preprocessing
+        - data_profiling
+      column_types:
+        admit_type_code : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        admit_type_description : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+
+
+  - name: terminology__bill_type
+    config:
+      schema: |
+        {%- if  var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_terminology{% else %}terminology{%- endif -%}
+      alias: bill_type
+      tags:
+        - terminology
+        - data_profiling
+      column_types:
+        bill_type_code : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        bill_type_description : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        deprecated : integer
+        deprecated_date : date
+
+
+  - name: terminology__calendar
+    config:
+      schema: |
+        {%- if  var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_terminology{% else %}terminology{%- endif -%}
+      alias: calendar
+      tags:
+        - terminology
+        - pmpm
+      column_types:
+        full_date: date
+        year: integer
+        month: integer
+        day: integer
+        month_name: |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        day_of_week_number: integer
+        day_of_week_name: |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        week_of_year: integer
+        day_of_year: integer
+        year_month: |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        first_day_of_month: date
+        last_day_of_month: date
+
+
+  - name: terminology__claim_type
+    config:
+      schema: |
+        {%- if  var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_terminology{% else %}terminology{%- endif -%}
+      alias: claim_type
+      tags:
+        - terminology
+        - data_profiling
+      column_types:
+        claim_type_code : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        claim_type_description : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+
+
+  - name: terminology__code_type
+    config:
+      schema: |
+        {%- if  var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_terminology{% else %}terminology{%- endif -%}
+      alias: code_type
+      tags: 
+        - terminology
+        - data_profiling
+      column_types:
+        description : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+  - name: terminology__discharge_disposition
+    config:
+      schema: |
+        {%- if  var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_terminology{% else %}terminology{%- endif -%}
+      alias: discharge_disposition
+      column_types:
+        discharge_disposition_code : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        discharge_disposition_description : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+  - name: terminology__encounter_type
+    config:
+      schema: |
+        {%- if  var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_terminology{% else %}terminology{%- endif -%}
+      alias: encounter_type
+      tags:
+        - terminology
+        - claims_preprocessing
+      column_types:
+        description : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+  - name: terminology__ethnicity
+    config:
+      schema: |
+        {%- if  var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_terminology{% else %}terminology{%- endif -%}
+      alias: ethnicity
+      tags: terminology
+      column_types:
+        code : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        description : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+  - name: terminology__fips_county
+    config:
+      schema: |
+        {%- if  var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_terminology{% else %}terminology{%- endif -%}
+      alias: fips_county
+      tags: terminology
+      column_types:
+        fips_code : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        county : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        state : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+  - name: terminology__ansi_fips_state
+    config:
+      schema: |
+        {%- if  var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_terminology{% else %}terminology{%- endif -%}
+      alias: ansi_fips_state
+      tags:
+        - terminology
+        - medicare_cclf_connector
+      column_types:
+        ansi_fips_state_code : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        ansi_fips_state_abbreviation : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        ansi_fips_state_name : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+  - name: terminology__gender
+    config:
+      schema: |
+        {%- if  var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_terminology{% else %}terminology{%- endif -%}
+      alias: gender
+      tags:
+        - terminology
+        - data_profiling
+      column_types:
+        description : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+  - name: terminology__hcpcs_level_2
+    config:
+      schema: |
+        {%- if  var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_terminology{% else %}terminology{%- endif -%}
+      alias: hcpcs_level_2
+      tags: terminology
+      column_types:
+        hcpcs : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        seqnum : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        recid : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        long_description : |
+          {%- if target.type == "bigquery" -%} string {%- else -%} varchar(2000) {%- endif -%}
+        short_description : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+
+  - name: terminology__icd_10_cm
+    config:
+      schema: |
+        {%- if  var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_terminology{% else %}terminology{%- endif -%}
+      alias: icd_10_cm
+      tags:
+        - terminology
+        - claims_preprocessing
+        - readmissions
+        - data_profiling
+      column_types:
+        icd_10_cm : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        description : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+
+  - name: terminology__icd_10_pcs
+    config:
+      schema: |
+        {%- if  var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_terminology{% else %}terminology{%- endif -%}
+      alias: icd_10_pcs
+      tags:
+        - terminology
+        - claims_preprocessing
+        - readmissions
+      column_types:
+        icd_10_pcs : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        description : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+
+
+  - name: terminology__icd_9_cm
+    config:
+      schema: |
+        {%- if  var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_terminology{% else %}terminology{%- endif -%}
+      alias: icd_9_cm
+      tags:
+        - terminology
+        - claims_preprocessing
+        - readmissions
+        - data_profiling
+      column_types:
+        icd_9_cm : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        long_description : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        short_description : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+
+
+
+  - name: terminology__icd_9_pcs
+    config:
+      schema: |
+        {%- if  var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_terminology{% else %}terminology{%- endif -%}
+      alias: icd_9_pcs
+      tags:
+        - terminology
+        - claims_preprocessing
+        - readmissions
+        - data_profiling
+      column_types:
+        icd_9_pcs : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        long_description : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        short_description : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+
+
+  - name: terminology__loinc
+    config:
+      schema: |
+        {%- if  var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_terminology{% else %}terminology{%- endif -%}
+      alias: loinc
+      tags:
+        - terminology
+      columns:
+        - name: loinc
+          description: The LOINC code
+        - name:  short_name
+          description: If exists, the short human readable version of the LOINC description
+        - name: long_common_name
+          description: Clinician-friendly full loinc description
+        - name: component
+          description: The substance or entity being measured or observed.  Also called the Analyte. The first of six loinc parts.
+        - name: property
+          description: The characteristic or attribute of the analyte. The second of six loinc parts.
+        - name: time_aspect
+          description: The interval of time over which an observation was made. The third of six loinc parts.
+        - name: system
+          description: The thing upon which the observation was made. Also called specimen for laboratory tests. The fourth of six loinc parts.
+        - name: scale_type
+          description: How the observation value is quantified or expressed (e.g. quantitative, ordinal, nominal, etc).  The fifth of six loinc parts.
+        - name: method_type
+          description: A high-level classification of how the observation was made. Optional; only needed when the technique affects the clinical interpretation of the results.  The sixth of six loinc parts.
+        - name: class_code
+          description: A code representing the general category of the loinc term
+        - name: class_description
+          description: The general category of the LOINC term
+        - name: class_type_code
+          description: A code representing the top level category for the test
+        - name: class_type_description
+          description: The top level category for the test; Laboratory, Clincal, Claims attachments, or Surveys
+        - name: external_copyright_notice
+          description: External copyright holders copyright notice for this LOINC code
+        - name: status
+          description: The status of the LOINC code concept. Active, Trial (experimental), Discouraged (not recommended), or Deprecated (should not be used)
+        - name: version_first_released
+          description: The first release version of LOINC that included this code
+        - name: version_last_changed
+          description: The last LOINC version in which this record was changed
+      column_types:
+        loinc: |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        short_name : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        long_common_name : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        component : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        property : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        time_aspect : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        system : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        scale_type : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        method_type : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        class_code : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        class_description : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        class_type_code : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        class_type_description : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        external_copyright_notice : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar(3000) {%- endif -%}
+        status : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        version_first_released : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        version_last_changed : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+
+
+  - name: terminology__loinc_deprecated_mapping
+    config:
+      schema: |
+        {%- if  var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_terminology{% else %}terminology{%- endif -%}
+      alias: loinc_deprecated_mapping
+      tags:
+        - terminology
+      columns:
+        - name: loinc
+          description: The deprecated term to which the replacement term(s) apply.
+        - name: map_to
+          description: A replacement term that is to be used in place of the deprecated or discouraged term.
+        - name: comment
+          description: Narrative text that explains the rational for using the recommended replacement term.
+        - name: final_map_to
+          description: If there are multiple steps of deprecated codes, this is the final (active) code
+        - name: all_comments
+          description: An aggregation of comments for any mapping steps between the deprecated code and the active code
+        - name: depth
+          description: How many steps this mapping is to the active code
+      column_types:
+        loinc: |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        map_to : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        comment : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        final_map_to : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        all_comments : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        depth : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+
+
+
+  - name: terminology__mdc
+    config:
+      schema: |
+        {%- if  var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_terminology{% else %}terminology{%- endif -%}
+      alias: mdc
+      tags: terminology
+      column_types:
+        mdc_code : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        mcd_description : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+
+
+  - name: terminology__medicare_dual_eligibility
+    config:
+      schema: |
+        {%- if  var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_terminology{% else %}terminology{%- endif -%}
+      alias: medicare_dual_eligibility
+      tags:
+        - terminology
+        - claims_preprocessing
+        - data_profiling
+      column_types:
+        dual_status_code : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        dual_status_description : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+
+
+  - name: terminology__medicare_orec
+    config:
+      schema: |
+        {%- if  var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_terminology{% else %}terminology{%- endif -%}
+      alias: medicare_orec
+      tags:
+        - terminology
+        - claims_preprocessing
+        - data_profiling
+      column_types:
+        original_reason_entitlement_code: |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        original_reason_entitlement_description: |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+  
+
+  - name: terminology__ssa_fips_state
+    config:
+      schema: |
+        {%- if  var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_terminology{% else %}terminology{%- endif -%}
+      alias: ssa_fips_state
+      tags: terminology
+      column_types:
+        ssa_fips_state_code : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        ssa_fips_state_name : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+
+
+  - name: terminology__medicare_status
+    config:
+      schema: |
+        {%- if var('terminology_schema',None) != None -%}{{var('terminology_schema')}}
+        {%- elif var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_terminology
+        {% else %}terminology{%- endif -%}
+      alias: medicare_status
+      tags:
+        - terminology
+        - claims_preprocessing
+        - data_profiling
+      column_types:
+        medicare_status_code : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        medicare_status_description : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+
+
+  - name: terminology__ms_drg
+    config:
+      schema: |
+        {%- if  var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_terminology{% else %}terminology{%- endif -%}
+      alias: ms_drg
+      tags:
+        - terminology
+        - readmissions
+        - data_profiling
+        - claims_preprocessing
+      column_types:
+        ms_drg_code : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        mdc_code : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        medical_surgical : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        ms_drg_description : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        deprecated: integer
+        deprecated_date: date
+
+
+  - name: terminology__other_provider_taxonomy
+    config:
+      schema: |
+        {%- if  var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_terminology{% else %}terminology{%- endif -%}
+      tags:
+        - terminology
+        - claims_preprocessing
+      alias: other_provider_taxonomy
+      column_types:
+        npi: |
+          {%- if target.type == "bigquery" -%} string {%- else -%} varchar(35) {%- endif -%}
+        taxonomy_code: |
+          {%- if target.type == "bigquery" -%} string {%- else -%} varchar(35) {%- endif -%}
+        medicare_specialty_code: |
+          {%- if target.type == "bigquery" -%} string {%- else -%} varchar(173) {%- endif -%}
+        description: |
+          {%- if target.type == "bigquery" -%} string {%- else -%} varchar(101) {%- endif -%}
+        primary_flag:  integer
+
+        
+  - name: terminology__payer_type
+    config:
+      schema: |
+        {%- if  var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_terminology{% else %}terminology{%- endif -%}
+      alias: payer_type
+      tags: 
+        - terminology
+        - data_profiling
+      column_types:
+        payer_type : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+  - name: terminology__place_of_service
+    config:
+      schema: |
+        {%- if  var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_terminology{% else %}terminology{%- endif -%}
+      alias: place_of_service
+      tags:
+        - terminology
+        - claims_preprocessing
+        - data_profiling
+      column_types:
+        place_of_service_code : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        place_of_service_description : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+  - name: terminology__present_on_admission
+    config:
+      schema: |
+        {%- if  var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_terminology{% else %}terminology{%- endif -%}
+      alias: present_on_admission
+      tags:
+        - terminology
+        - data_profiling
+        - claims_preprocessing
+      column_types:
+        present_on_admit_code : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        description : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+
+  - name: terminology__provider
+    config:
+      schema: |
+        {%- if  var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_terminology{% else %}terminology{%- endif -%}
+      tags:
+        - terminology
+        - claims_preprocessing
+      alias: provider
+      column_types:
+        npi: |
+          {%- if target.type == "bigquery" -%} string {%- else -%} varchar(35) {%- endif -%}
+        entity_type_code: |
+          {%- if target.type == "bigquery" -%} string {%- else -%} varchar(26) {%- endif -%}
+        entity_type_description: |
+          {%- if target.type == "bigquery" -%} string {%- else -%} varchar(37) {%- endif -%}
+        primary_taxonomy_code: |
+          {%- if target.type == "bigquery" -%} string {%- else -%} varchar(35) {%- endif -%}
+        primary_specialty_description: |
+          {%- if target.type == "bigquery" -%} string {%- else -%} varchar(173) {%- endif -%}
+        provider_first_name: |
+          {%- if target.type == "bigquery" -%} string {%- else -%} varchar(95) {%- endif -%}
+        provider_last_name: |
+          {%- if target.type == "bigquery" -%} string {%- else -%} varchar(95) {%- endif -%}
+        provider_organization_name: |
+          {%- if target.type == "bigquery" -%} string {%- else -%} varchar(95) {%- endif -%}
+        parent_organization_name: |
+          {%- if target.type == "bigquery" -%} string {%- else -%} varchar(95) {%- endif -%}
+        practice_address_line_1: |
+          {%- if target.type == "bigquery" -%} string {%- else -%} varchar(80) {%- endif -%}
+        practice_address_line_2: |
+          {%- if target.type == "bigquery" -%} string {%- else -%} varchar(80) {%- endif -%}
+        practice_city: |
+          {%- if target.type == "bigquery" -%} string {%- else -%} varchar(65) {%- endif -%}
+        practice_state: |
+          {%- if target.type == "bigquery" -%} string {%- else -%} varchar(65) {%- endif -%}
+        practice_zip_code: |
+          {%- if target.type == "bigquery" -%} string {%- else -%} varchar(42) {%- endif -%}
+        last_updated: date
+        deactivation_date: date
+        deactivation_flag: |
+          {%- if target.type == "bigquery" -%} string {%- else -%} varchar(80) {%- endif -%}
+
+  - name: terminology__race
+    config:
+      schema: |
+        {%- if  var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_terminology{% else %}terminology{%- endif -%}
+      alias: race
+      tags: 
+        - terminology
+        - data_profiling
+      column_types:
+        race_code : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        race_description : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+  - name: terminology__revenue_center
+    config:
+      schema: |
+        {%- if  var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_terminology{% else %}terminology{%- endif -%}
+      alias: revenue_center
+      tags:
+        - terminology
+        - claims_preprocessing
+        - data_profiling
+      column_types:
+        revenue_center_code : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        revenue_center_description : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+  - name: terminology__apr_drg
+    config:
+      schema: |
+        {%- if  var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_terminology{% else %}terminology{%- endif -%}
+      alias: apr_drg
+      tags:
+        - terminology
+        - data_profiling
+      column_types:
+        apr_drg_code : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        severity : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
+        apr_drg_description : |
+          {%- if target.type in ("bigquery", "databricks") -%} string {%- else -%} varchar {%- endif -%}
